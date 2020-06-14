@@ -13,8 +13,9 @@ for i=1:length(trail)
     for j = 1:30
         xn = data(j,trail(i,1):trail(i,2));
         [Pxx f]=pwelch(xn,window,[],Nfft,fs);
+        Pxxx = 10*log10(Pxx);
         index = find(f>4&f<7);
-        averange = [averange,mean(Pxx(index))];
+        averange = [averange,mean(Pxxx(index))];
     end
     feature = [feature;averange];
 end
